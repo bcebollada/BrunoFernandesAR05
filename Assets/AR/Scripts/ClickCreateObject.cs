@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using TMPro;
 
 public class ClickCreateObject : MonoBehaviour
 {
@@ -14,10 +15,20 @@ public class ClickCreateObject : MonoBehaviour
 
     public int assetSelected; //this number will select the object in the array
 
+    private ObjectOptions objectOptions;
+
+    public TMP_Text selectedAssetText;
+
+    private void Awake()
+    {
+        objectOptions = GetComponent<ObjectOptions>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         Vector2 pos;
+        selectedAssetText.text = "Selected asset: " + assetsToCreate[assetSelected].name;
 
 
 #if UNITY_EDITOR
@@ -47,8 +58,11 @@ public class ClickCreateObject : MonoBehaviour
 
         Ray ray = cam.ScreenPointToRay(pos);
 
-        if(Physics.Raycast(ray, out RaycastHit hitInfo) && !alreadyPressed)
+        if(Physics.Raycast(ray, out RaycastHit hitInfo) && !alreadyPressed && (objectOptions.selectedObj == null))
         {
+            if (hitInfo.collider.gameObject.CompareTag("Furniture")) return; //clicked on object
+
+
             alreadyPressed = true;
 
             var instance = Instantiate(assetsToCreate[assetSelected], hitInfo.point + new Vector3(0, 0.2f, 0), Quaternion.identity);
@@ -62,6 +76,7 @@ public class ClickCreateObject : MonoBehaviour
             Debug.DrawRay(cam.transform.position, cam.transform.forward * 10, Color.red, 4f);
 
         }
+
 
     }
 }
