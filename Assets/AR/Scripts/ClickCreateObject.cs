@@ -62,18 +62,20 @@ public class ClickCreateObject : MonoBehaviour
         {
             if (hitInfo.collider.gameObject.CompareTag("Furniture")) return; //clicked on object
 
-
-            alreadyPressed = true;
-
-            var instance = Instantiate(assetsToCreate[assetSelected], hitInfo.point + new Vector3(0, 0.2f, 0), Quaternion.identity);
-
-            // Add an ARAnchor component if it doesn't have one already.
-            if (instance.GetComponent<ARAnchor>() == null)
+            if((hitInfo.normal.y < 1.2) && (hitInfo.normal.y > 0.8)) //planar is horizontal
             {
-                instance.AddComponent<ARAnchor>();
-            }
+                alreadyPressed = true;
 
-            Debug.DrawRay(cam.transform.position, cam.transform.forward * 10, Color.red, 4f);
+                var instance = Instantiate(assetsToCreate[assetSelected], hitInfo.point + new Vector3(0, 0.2f, 0), Quaternion.identity);
+
+                // Add an ARAnchor component if it doesn't have one already.
+                if (instance.GetComponent<ARAnchor>() == null)
+                {
+                    instance.AddComponent<ARAnchor>();
+                }
+
+                Debug.DrawRay(cam.transform.position, cam.transform.forward * 10, Color.red, 4f);
+            }
 
         }
 
