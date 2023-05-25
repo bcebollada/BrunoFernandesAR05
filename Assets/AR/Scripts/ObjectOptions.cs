@@ -27,13 +27,13 @@ public class ObjectOptions : MonoBehaviour
     public void RotateLeft()
     {
         if(selectedObj == null) return;
-        selectedObj.transform.Rotate(0, 2*  rotAmount,0);
+        selectedObj.transform.Rotate(0, -2*  rotAmount,0);
     }
 
     public void RotateRight()
     {
         if (selectedObj == null) return;
-        selectedObj.transform.Rotate(0, -2 * rotAmount, 0);
+        selectedObj.transform.Rotate(0, 2 * rotAmount, 0);
     }
 
     public void MoveUp()

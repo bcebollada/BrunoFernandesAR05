@@ -62,7 +62,7 @@ public class ClickCreateObject : MonoBehaviour
         {
             if (hitInfo.collider.gameObject.CompareTag("Furniture")) return; //clicked on object
 
-            if((hitInfo.normal.y < 1.2) && (hitInfo.normal.y > 0.8)) //planar is horizontal
+            if((hitInfo.normal.y < 1.2) && (hitInfo.normal.y > 0.8)) //planar is horizontal 
             {
                 alreadyPressed = true;
 
