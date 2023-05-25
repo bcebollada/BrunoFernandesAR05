@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedObj: {fileID: 0}
   cam: {fileID: 1507799775}
-  rotAmount: 2
+  rotAmount: 6
   moveAmount: 0.5
   uiOptions: {fileID: 32519494}
 --- !u!1 &1741395360
